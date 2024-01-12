@@ -1,0 +1,100 @@
+preferences:
+  general:
+    audioLib: sounddevice
+    units: deg
+
+window:
+  size: [1440, 900]
+  pos: [0, 0]
+  color: [1, 1, 1] # white screen, use 0, 0, 0 for grey, -1, -1, -1 for black, or rgb values
+  fullscr: False # set this to false for testing (LK)
+  #winType: pyglet
+  waitBlanking: True
+
+responses:
+  left:
+    - d
+    - n
+    - w
+    - e
+  right:
+    - b
+    - y
+    - g
+    - r
+
+monitor:
+  name: boldscreen-uva
+  width: 70.5  # in cm (get boldscreen info here)
+  distance: 162  # in cm 151+11
+  gamma: 1
+
+design: 
+  stim_duration: 2.5  # in seconds
+  iti: 2.5 # in seconds
+  ttl_trigger_word: 2
+  old_resp: left
+  new_resp: right
+  escape_resp: escape
+  
+stimuli:
+  instruction_text: 'Welcome to the experiment. Press "t" to start.'
+  pretrigger_text: 'Waiting for scanner trigger...'
+  text_color: [-1, -1, -1] # blasck text, use 0, 0, 0 for grey, 1, 1, 1 for white, or rgb values
+  fix_color: [-1, -1, -1] # blasck text, use 0, 0, 0 for grey, 1, 1, 1 for white, or rgb values
+
+  bull_radius: .2
+  fix_radius: 0.09
+  bull_lines: False
+  inner_fix_linewidth: 4
+  outer_fix_linewidth: 1
+  image_h: 8  # in deg
+  image_w: 8  # in deg
+  square_img_luminance: False #
+  image_units: deg
+  fix_during_dummies: True
+
+mouse:
+  visible: False
+
+
+# eyetracker:
+#   model: eyelink
+#   CNUM: 9
+#   MIN_CALIB_FIX: 1000
+
+eyetracker:
+  address: '100.1.1.1'
+  dot_size: 0.1  # in deg
+  options:
+    active_eye: left  # [right]
+    binocular_enabled: NO  # [YES]
+    heuristic_filter: 2  # [0, OFF, 1, ON]
+    pupil_size_diameter: YES  # [NO]
+    #simulate_head_camera: NO  # [YES]  # GIVES ERROR?
+    #simulation_screen_distance
+    file_event_filter: 'LEFT,RIGHT,FIXATION,SACCADE,BLINK,MESSAGE,BUTTON,INPUT'
+    link_event_filter: 'LEFT,RIGHT,FIXATION,SACCADE,BLINK,BUTTON'
+    link_sample_data: 'LEFT,RIGHT,GAZE,GAZERES,AREA,STATUS,HTARGET'
+    #file_sample_data: LEFT,RIGHT,GAZE,AREA,GAZERES,STATUS,HTARGET,INPUT'  # GIVES ERROR?
+    calibration_type: HV5  # [H3, HV3, HV5, HV9]
+    x_gaze_constraint: AUTO
+    y_gaze_constraint: AUTO
+    enable_automatic_calibration: YES  # [NO]
+    automatic_calibration_pacing: 1000
+    enable_search_limits: YES
+    track_search_limits: YES
+    autothreshold_click: YES
+    autothreshold_repeat: YES
+    enable_camera_position_detect: YES
+    sample_rate: 1000
+
+mri:
+  simulate: True # changed this to true (LK)
+  TR: 2.0  # seconds between volume acquisitions
+  TA: 2.0  # seconds to acquire one slice (?)
+  volumes: 10  # number of 3D volumes to obtain in a given scanning run
+  sync: t  # character used as flag for sync timing, default=‘5’
+  skip: 0  # how many frames to silently omit initially during T1 stabilization, no sync pulse.
+  sound: False  # simulate scanner noise
+
