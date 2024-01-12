@@ -14,9 +14,22 @@ pip install git+https://github.com/VU-Cog-Sci/exptools2/
 ```
 
 # Use
-Get all files from this repository and run `main.py`. Make sure, the run and set number are set to 1 respectively as this is currently the only file inside the stimuli folder. 
+Get the following from the repository: 
+- language_localizer_session.py
+- language_localizer_trials.py
+- main.py
+- settings.yml
+- stimuli folder with content
 
-```
+Make sure run_nr and set_nr in `LanguageLocalizerSession()` inside `main.py` are set to 1 as this is the only stimulus file currently availble in the stimuli folder. 
+
+Run `main.py`.
+
+Press `space` to start when "Hello World!" is displayed. 
+
+You can use `escape` to exit the session early but gracefully - with creating a log file.  
+
+
 
 # References
 - Fedorenko, E., Hsieh, P.-J., Nieto-Castañón, A., Whitfield-Gabrieli, S., & Kanwisher, N. (2010). New method for fMRI investigations of language: Defining ROIs functionally in individual subjects. Journal of Neurophysiology, 104(2), 1177–1194. https://doi.org/10.1152/jn.00032.2010
