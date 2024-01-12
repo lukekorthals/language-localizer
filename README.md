@@ -13,6 +13,11 @@ pip install zmq json-tricks pyparallel sounddevice pygame pysoundcard psychopy_e
 pip install git+https://github.com/VU-Cog-Sci/exptools2/
 ```
 
+# Use
+Get all files from this repository and run `main.py`. Make sure, the run and set number are set to 1 respectively as this is currently the only file inside the stimuli folder. 
+
+```
+
 # References
 - Fedorenko, E., Hsieh, P.-J., Nieto-Castañón, A., Whitfield-Gabrieli, S., & Kanwisher, N. (2010). New method for fMRI investigations of language: Defining ROIs functionally in individual subjects. Journal of Neurophysiology, 104(2), 1177–1194. https://doi.org/10.1152/jn.00032.2010
 - Peirce, J. W., Gray, J. R., Simpson, S., MacAskill, M. R., Höchenberger, R., Sogo, H., Kastman, E., Lindeløv, J. (2019). PsychoPy2: experiments in behavior made easy. Behavior Research Methods. 10.3758/s13428-018-01193-y Titel anhand dieser DOI in Citavi-Projekt übernehmen
