@@ -2,7 +2,12 @@
 from language_localizer_session import LanguageLocalizerSession
 
 # Create a session object
-session = LanguageLocalizerSession(1, 1, 1, settings_file="C:/Users/luke-/Desktop/Python Repositories/language-localizer/settings.yml")
+session = LanguageLocalizerSession(
+    subj_nr=1, 
+    run_nr=1, 
+    set_nr=1, 
+    settings_file="/Users/lukekorthals/Desktop/repositories/language-localizer/settings.yml",
+    eyetracker_on=False)
 
 # Run the session
 session.run()

@@ -53,7 +53,7 @@ class LanguageLocalizerTrial(Trial):
                          draw_each_frame=draw_each_frame)
 
 
-class LLHandPressTrial(LanguageLocalizerTrial):
+class LLAttentionTrial(LanguageLocalizerTrial):
     """Trial to display the hand press icon as attention check."""
 
     def __init__(self,

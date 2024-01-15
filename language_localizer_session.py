@@ -2,11 +2,11 @@
 
 import csv
 from datetime import datetime
-from exptools2.core import Session
-from language_localizer_trials import LLFixationTrial, LLHandPressTrial, LLSentenceTrial
+from exptools2.core.eyetracker import PylinkEyetrackerSession
+from language_localizer_trials import LLFixationTrial, LLAttentionTrial, LLSentenceTrial
 
 
-class LanguageLocalizerSession(Session):
+class LanguageLocalizerSession(PylinkEyetrackerSession):
     """LanguageLocalizer session class."""
 
     def __init__(self,
@@ -15,7 +15,8 @@ class LanguageLocalizerSession(Session):
                  set_nr: int,
                  output_dir: str="logs",
                  settings_file: str =None,
-                 stimuli_path: str="stimuli"):
+                 stimuli_path: str="stimuli",
+                 eyetracker_on: bool=False):
         """Initialize the LanguageLocalizerSession object.
 
         parameters
@@ -30,17 +31,20 @@ class LanguageLocalizerSession(Session):
         self.subj_nr = subj_nr
         self.run_nr = run_nr
         self.set_nr = set_nr
+        self.stimuli_path = stimuli_path
         
         output_str = self.set_output_str()
 
         try:
-            super().__init__(output_str=output_str, output_dir=output_dir, settings_file=settings_file)
+            super().__init__(output_str=output_str, 
+                             output_dir=output_dir, 
+                             settings_file=settings_file,
+                             eyetracker_on=eyetracker_on)
         except Exception as e:
             print(f"Couldnt initialize session due to error in super().__init__: {e}")
         
         self.load_stimulus_set()
         self.create_trials()
-        
     
     def set_output_str(self):
         """Set the output_str."""
@@ -51,7 +55,7 @@ class LanguageLocalizerSession(Session):
     def load_stimulus_set(self):
         """Loads the stimulus set according to run and set number."""
 
-        stim_set_path = f"stimuli/langloc_fmri_run{self.run_nr}_stim_set{self.set_nr}.csv"
+        stim_set_path = f"{self.stimuli_path}/langloc_fmri_run{self.run_nr}_stim_set{self.set_nr}.csv"
         print(f"Using stimulus set: {stim_set_path}")
         self.sentences = []
         # Load sentences from csv file
@@ -80,10 +84,9 @@ class LanguageLocalizerSession(Session):
             sentence_trials += 1
             # Add attention reminder after each sentence
             self.trials.append(
-                LLHandPressTrial(session=self, trial_nr=trial_nr+1)
+                LLAttentionTrial(session=self, trial_nr=trial_nr+1)
             )
             trial_nr += 2 # increase trial number by 2 (sentence + attention reminder)
-            print(f"trial_nr: {trial_nr}")
             # After every 12 trials, add a fixation trial
             print(sentence_trials)
             if sentence_trials%12 == 0:
@@ -97,12 +100,32 @@ class LanguageLocalizerSession(Session):
     def run(self):
         """Run the session."""
 
-        # Instructions
-        self.display_text("Hello world!", keys=["space"], color=self.settings["stimuli"]["text_color"])  
+        # Calibrate eye tracker
+        # TODO: calibrate only first session?
+        if self.run_nr == 1:
+            if self.eyetracker_on:
+                self.calibrate_eyetracker()
 
+        # Instructions
+        # TODO: add instructions
+        self.display_text(
+            "This is the instruction", 
+            keys=self.settings["responses"]["press"], 
+            color=self.settings["stimuli"]["text_color"])  
+
+        # Start eye tracker
+        if self.eyetracker_on:
+            self.start_recording_eyetracker()
+
+        # Wait for fMRI trigger
+        self.display_text("Waiting for scanner...",
+                          keys=self.settings['mri'].get('sync', 't'),
+                          color=self.settings["stimuli"]["text_color"])
+
+        # Start the experiment
         self.start_experiment()
 
-        # Run the trials	
+        # Run trials	
         for trial in self.trials:
             trial.run()
 
