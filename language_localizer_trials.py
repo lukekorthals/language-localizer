@@ -60,7 +60,7 @@ class LLHandPressTrial(LanguageLocalizerTrial):
                  session: Session,
                  trial_nr: int,
                  phase_durations: Collection[int] = (400, 100),
-                 phase_names: Collection[str] = ("ll_image", "ll_blank"),
+                 phase_names: Collection[str] = ("ll_attention", "ll_blank"),
                  parameters: dict = None,
                  timing: str = 'milliseconds',
                  load_next_during_phase: int = None,
