@@ -1,8 +1,8 @@
 
-from language_localizer.language_localizer_session import LanguageLocalizerSession
+from language_localizer.language_localizer_session import LanguageLocalizerEyeTrackerSession
 
 # Create a session object
-session = LanguageLocalizerSession(
+session = LanguageLocalizerEyeTrackerSession(
     subj_nr=1, 
     run_nr=1, 
     set_nr=1, 
