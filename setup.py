@@ -12,7 +12,7 @@ setup(
         'pyyaml',
         'pandas>=0.23.0',
         'numpy>=1.14.3',
-        'msgpack_numpy'
+        'msgpack_numpy',
         'exptools2 @ git+ssh://github.com/VU-Cog-Sci/exptools2/'
         ],
     version='0.1',
