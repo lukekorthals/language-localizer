@@ -1,7 +1,6 @@
 
 import csv
 import pkg_resources
-from psychopy.visual import ImageStim
 
 class LanguageLocalizerSentenceStimSet():
      """"""

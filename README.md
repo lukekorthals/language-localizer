@@ -29,6 +29,20 @@ Press `space` to start when "Hello World!" is displayed.
 
 You can use `escape` to exit the session early but gracefully - with creating a log file.  
 
+## Settings.yml
+Make sure to add the following info to the settings yaml. 
+```
+language_localizer:
+  responses:
+    attention_check: space 
+    escape: escape
+  stimuli: 
+    text_color: [-1, -1, -1]
+    fix_color: [-1, -1, -1]
+  mri:
+    sync: t
+```
+
 
 
 # References

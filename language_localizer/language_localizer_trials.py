@@ -150,7 +150,7 @@ class LLSentenceTrial(LanguageLocalizerTrial):
                          draw_each_frame=draw_each_frame)
 
         # Create the text stimuli
-        text_color = self.session.settings["stimuli"]["text_color"]
+        text_color = self.session.settings["language_localizer"]["stimuli"]["text_color"]
         self.txt_stims = [
             TextStim(self.session.win, text=word, color=text_color) for word in words]
 
@@ -188,7 +188,7 @@ class LLFixationTrial(LanguageLocalizerTrial):
                          draw_each_frame=draw_each_frame)
 
         self.fix_stim = TextStim(
-            self.session.win, text="+", color=self.session.settings["stimuli"]["fix_color"])
+            self.session.win, text="+", color=self.session.settings["language_localizer"]["stimuli"]["fix_color"])
 
     def draw(self):
         """Draw the image."""

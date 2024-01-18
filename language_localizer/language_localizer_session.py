@@ -2,6 +2,7 @@
 
 from datetime import datetime
 from exptools2.core.eyetracker import PylinkEyetrackerSession
+from functools import reduce
 from language_localizer.language_localizer_trials import LLFixationTrial, LLAttentionTrial, LLSentenceTrial
 from language_localizer.language_localizer_stimuli import LanguageLocalizerSentenceStimSet, LanguageLocalizerAttentionCheckStim
 
@@ -45,6 +46,9 @@ class LanguageLocalizerEyeTrackerSession(PylinkEyetrackerSession):
         except Exception as e:
             print(f"Couldnt initialize session due to error in super().__init__: {e}")
         
+        # 
+        self.validate_settings()
+
         # Load stimuli and create trials
         self.sentences = sentence_stim_set.load(run_nr, set_nr)
         self.attention_check = attention_check_stim.load()
@@ -84,6 +88,29 @@ class LanguageLocalizerEyeTrackerSession(PylinkEyetrackerSession):
                     LLFixationTrial(session=self, trial_nr=trial_nr)
                 )
                 trial_nr += 1 # increase trial number by 1 (fixation trial)
+    
+    def validate_settings(self):
+        required_keys = [
+            'language_localizer.responses.attention_check',
+            'language_localizer.responses.escape',
+            'language_localizer.stimuli.text_color',
+            'language_localizer.stimuli.fix_color',
+            'language_localizer.mri.sync'
+        ]
+
+        for i, key in enumerate(required_keys):
+            try:
+                reduce(dict.get, key.split('.'), self.settings)
+            except Exception as e:
+                print("""Some required settings are not set in your settings.yml
+                      \nRemember to set values for the following keys:
+                        \n- 'language_localizer.responses.attention_check',
+                        \n- 'language_localizer.responses.escape',
+                        \n- 'language_localizer.stimuli.text_color',
+                        \n- 'language_localizer.stimuli.fix_color',
+                        \n- 'language_localizer.mri.sync'
+                      
+                      """)
 
     def run(self):
         """Run the session."""
@@ -98,8 +125,8 @@ class LanguageLocalizerEyeTrackerSession(PylinkEyetrackerSession):
         # TODO: add instructions
         self.display_text(
             "This is the instruction", 
-            keys=self.settings["responses"]["press"], 
-            color=self.settings["stimuli"]["text_color"])  
+            keys=self.settings["language_localizer"]["responses"]["attention_check"], 
+            color=self.settings["language_localizer"]["stimuli"]["text_color"])  
 
         # Start eye tracker
         if self.eyetracker_on:
@@ -107,8 +134,8 @@ class LanguageLocalizerEyeTrackerSession(PylinkEyetrackerSession):
 
         # Wait for fMRI trigger
         self.display_text("Waiting for scanner...",
-                          keys=self.settings['mri'].get('sync', 't'),
-                          color=self.settings["stimuli"]["text_color"])
+                          keys=self.settings["language_localizer"]["mri"]["sync"],
+                          color=self.settings["language_localizer"]["stimuli"]["text_color"])
 
         # Start the experiment
         self.start_experiment()
@@ -118,7 +145,7 @@ class LanguageLocalizerEyeTrackerSession(PylinkEyetrackerSession):
             trial.run()
 
             # Listen for escape key
-            if trial.last_resp == self.settings['design']['escape_resp']:
+            if trial.last_resp == self.settings["language_localizer"]["responses"]["escape"]:
                 break
 
         # Gracefully close the session and create log

@@ -30,10 +30,10 @@ design:
   escape_resp: escape
   
 stimuli:
-  instruction_text: 'Welcome to the experiment. Press "t" to start.'
+  instruction_text: 'Welcome to the experiment. Press "space" to start.'
   pretrigger_text: 'Waiting for scanner trigger...'
-  text_color: [-1, -1, -1] # blasck text, use 0, 0, 0 for grey, 1, 1, 1 for white, or rgb values
-  fix_color: [-1, -1, -1] # blasck text, use 0, 0, 0 for grey, 1, 1, 1 for white, or rgb values
+  ll_text_color: [-1, -1, -1] # blasck text, use 0, 0, 0 for grey, 1, 1, 1 for white, or rgb values
+  ll_fix_color: [-1, -1, -1] # blasck text, use 0, 0, 0 for grey, 1, 1, 1 for white, or rgb values
 
   bull_radius: .2
   fix_radius: 0.09
@@ -91,3 +91,12 @@ mri:
   skip: 0  # how many frames to silently omit initially during T1 stabilization, no sync pulse.
   sound: False  # simulate scanner noise
 
+language_localizer:
+  responses:
+    attention_check: space
+    escape: escape
+  stimuli: 
+    text_color: [-1, -1, -1]
+    fix_color: [-1, -1, -1]
+  mri:
+    sync: t
