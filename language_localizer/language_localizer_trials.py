@@ -94,9 +94,8 @@ class LLAttentionTrial(LanguageLocalizerTrial):
                          draw_each_frame=draw_each_frame)
 
         # Create the image stimulus
-        img_path = f"{self.session.stimuli_path}/hand-press-button-4.jpeg"
         self.img_stim = ImageStim(self.session.win,
-                                  image=img_path)
+                                  image=self.session.attention_check)
 
     def draw(self):
         """Draw the image."""
