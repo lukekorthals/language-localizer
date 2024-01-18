@@ -99,7 +99,19 @@ language_localizer:
     attention_check: space
     escape: escape
   stimuli: 
+    phase_name_blank: ll_blank
+    phase_name_word: ll_word
+    phase_name_attention: ll_attention
+    phase_name_fix: ll_fix
+    phase_duration_blank: 100
+    phase_duration_word: 450
+    phase_duration_attention: 400
+    phase_duration_fix: 1400
     text_color: [-1, -1, -1]
     fix_color: [-1, -1, -1]
+    win_color: [1, 1, 1]
   mri:
     sync: t
+  text:
+    instructions: This is the instruction text
+    awaiting_scanner: Waiting for scanner ...
