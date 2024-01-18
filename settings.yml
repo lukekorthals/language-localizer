@@ -12,16 +12,8 @@ window:
   waitBlanking: True
 
 responses:
-  left:
-    - d
-    - n
-    - w
-    - e
-  right:
-    - b
-    - y
-    - g
-    - r
+  press:
+    - space
 
 monitor:
   name: boldscreen-uva
@@ -64,7 +56,8 @@ mouse:
 #   MIN_CALIB_FIX: 1000
 
 eyetracker:
-  address: '100.1.1.1'
+  # address: '100.1.1.1'
+  address: None # use this for dummy mode (LK)
   dot_size: 0.1  # in deg
   options:
     active_eye: left  # [right]

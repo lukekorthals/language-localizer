@@ -1,5 +1,5 @@
 
-from language_localizer_session import LanguageLocalizerSession
+from language_localizer.language_localizer_session import LanguageLocalizerSession
 
 # Create a session object
 session = LanguageLocalizerSession(

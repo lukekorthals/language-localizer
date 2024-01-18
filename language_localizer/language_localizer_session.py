@@ -3,7 +3,7 @@
 import csv
 from datetime import datetime
 from exptools2.core.eyetracker import PylinkEyetrackerSession
-from language_localizer_trials import LLFixationTrial, LLAttentionTrial, LLSentenceTrial
+from language_localizer.language_localizer_trials import LLFixationTrial, LLAttentionTrial, LLSentenceTrial
 
 
 class LanguageLocalizerSession(PylinkEyetrackerSession):
