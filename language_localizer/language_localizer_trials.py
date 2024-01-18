@@ -65,8 +65,7 @@ class LLAttentionTrial(LanguageLocalizerTrial):
                  timing: str = 'milliseconds',
                  load_next_during_phase: int = None,
                  verbose: bool = True,
-                 draw_each_frame: bool = True,
-                 img_path: str = "stimuli/hand-press-button-4.jpeg"):
+                 draw_each_frame: bool = True):
         """Initialize the ImageTrial object.
 
         parameters
@@ -80,8 +79,6 @@ class LLAttentionTrial(LanguageLocalizerTrial):
         timing: str
             The "units" of the phase durations. Best to keep as 'milliseconds'. 
             Refer to LanguageLocalizerTrial for more info. 
-        img_path : str
-            Path to the image to be displayed. Defaults to the hand press icon.
         other parameters:
             refer to language_localizer_trial.LanguageLocalizerTrial
         """
@@ -97,6 +94,7 @@ class LLAttentionTrial(LanguageLocalizerTrial):
                          draw_each_frame=draw_each_frame)
 
         # Create the image stimulus
+        img_path = f"{self.session.stimuli_path}/hand-press-button-4.jpeg"
         self.img_stim = ImageStim(self.session.win,
                                   image=img_path)
 
