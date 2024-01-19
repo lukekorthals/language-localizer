@@ -8,20 +8,11 @@ setup(
     author_email='luke-korthals@outlook.de',
     packages=['language_localizer'],
     install_requires=[
-        'exptools2 @ git+ssh://github.com/VU-Cog-Sci/exptools2/'
+        'exptools2 @ git+ssh://github.com/VU-Cog-Sci/exptools2/',
+        'psychopy-mri-emulator'
         ],
     package_data={
-        "language_localizer": ["stimuli/hand-press-button-4.jpg",
-                               "stimuli/langloc_fmri_run1_stim_set1.csv",
-                               "stimuli/langloc_fmri_run1_stim_set2.csv",
-                               "stimuli/langloc_fmri_run1_stim_set3.csv",
-                               "stimuli/langloc_fmri_run1_stim_set4.csv",
-                               "stimuli/langloc_fmri_run1_stim_set5.csv",
-                               "stimuli/langloc_fmri_run2_stim_set1.csv",
-                               "stimuli/langloc_fmri_run2_stim_set2.csv",
-                               "stimuli/langloc_fmri_run2_stim_set3.csv",
-                               "stimuli/langloc_fmri_run2_stim_set4.csv",
-                               "stimuli/langloc_fmri_run2_stim_set5.csv"]
+        "language_localizer": ["stimuli/*"]
 
     },
     version='0.1',
