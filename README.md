@@ -4,7 +4,7 @@ Python replication of language localizer originally written in Matlab by Fedoren
 # Installation
 On macOS you need to install `wxPython` and `gevent` seperately. The remaining requirements will be installed when you install the language-localizer package.
 
-On Windows, simply using `pip install git+https://github.com/lukekorthals/language-localizer` but I still recommend simply running the following commands in full. 
+On Windows, simply using `pip install git+https://github.com/lukekorthals/language-localizer` may work but I still recommend simply running the following commands in full.
 
 ```
 conda create -n language-localizer python=3.9
@@ -15,13 +15,36 @@ pip install git+https://github.com/lukekorthals/language-localizer
 ```
 
 # Quickstart
-Make sure your settings.yml includes the following parameters to define stimuli settings and key presses.
-Unless you change any values, the text and fixation cross will be black and are displayed for the same durations as in the original experiment by Fedorenko et al. (2010). 
+To run a simple example using standard settings you can use the following code. 
+
 You can use the following keys. 
 - Press `space` to start when "This is the instruction text" is displayed. 
 - Press `t` to simulate the mri sync when "Waiting for scanner ..." is displayed. 
 - Press `space` whenever the attention check image is being displayed
 - Press `escape` to gracefully exit the session early.
+
+
+The session will run according to the settings in the default [settings.yaml](https://github.com/lukekorthals/language-localizer/blob/main/language_localizer/pkg_resources/settings/settings.yml) file which is only intended to serve as an example. 
+
+Refer to [Settings](Settings) when implementing the language localizer as part of an actual experiment. 
+
+```python
+from language_localizer.language_localizer_session import LanguageLocalizerEyeTrackerSession
+
+# Create a session object
+session = LanguageLocalizerEyeTrackerSession(
+  subj_nr=1, 
+  run_nr=1, 
+  set_nr=1
+  )
+
+# Run the session
+session.run()
+```
+
+
+# Settings
+To implement the language localizer as part of an actual experiment, you should create your own settings.yml following the instructions from [exptools2](https://github.com/VU-Cog-Sci/exptools2) and make sure to add the following settings.
 
 ```yaml
 language_localizer:
@@ -47,29 +70,9 @@ language_localizer:
     awaiting_scanner: Waiting for scanner ...
 ```
 
-To run a simple example use the following code. 
+In the following the individual setting sections are explained in detail. 
 
-```python
-from language_localizer.language_localizer_session import LanguageLocalizerEyeTrackerSession
-from language_localizer.language_localizer_stimuli import LanguageLocalizerSentenceStimSet, LanguageLocalizerAttentionCheckStim
-
-# Create a session object
-session = LanguageLocalizerEyeTrackerSession(
-  subj_nr=1,
-  run_nr=1, 
-  set_nr=1, 
-  settings_file="<PATH TO YOUR SETTINGS FILE>",
-  output_dir: str="logs"
-  )
-
-# Run the session
-session.run()
-```
-
-# Important Settings
-All important settings should be defined in the settings.yml with the highest order key being "language_localizer".
-
-**Responses**
+## Responses
 Keys used during the experiment. 
 - `attention_check`: starts the experiment after the instruction and should be pressed when seeing the attention check image
 - `escape`: close the experiment gracefully early
@@ -80,7 +83,7 @@ responses:
     escape: escape
 ```
 
-**Stimuli**
+## Stimuli
 All settings related to stimuli. 
 - `phase_name_...`: phase names included in the log file
 - `phase_duration_...`: phase durations defined in milliseconds to determine how long each stimulus is presented
@@ -104,7 +107,7 @@ stimuli:
     win_color: [1, 1, 1]
 ```
 
-**MRI**
+## MRI
 Settings concerning the mri scanner. 
 - `sync`: flag representing the sync signal
 
