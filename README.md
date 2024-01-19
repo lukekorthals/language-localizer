@@ -2,6 +2,7 @@
 Python replication of language localizer originally written in Matlab by Fedorenko et al. (2010) to be used with [psychopy](https://psychopy.org/) (Peirce et al., 2019) and [exptools2](https://github.com/VU-Cog-Sci/exptools2).
 
 # Installation
+First make sure you have [anaconda](https://www.anaconda.com/download) and [git](https://git-scm.com/download/win) installed and set up on your machine. 
 On macOS you need to install `wxPython` and `gevent` seperately. The remaining requirements will be installed when you install the language-localizer package.
 
 On Windows, simply using `pip install git+https://github.com/lukekorthals/language-localizer` may work but I still recommend running the following commands in full.
