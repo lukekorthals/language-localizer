@@ -7,6 +7,7 @@ session = LanguageLocalizerEyeTrackerSession(
     subj_nr=1, 
     run_nr=1, 
     set_nr=1,
+    output_dir="example_logs",
     sentence_stim_set=LanguageLocalizerSentenceStimSet(complete_path=None), # set complete path for custom sets
     attention_check_stim=LanguageLocalizerAttentionCheckStim(complete_path=None), # set complete path for custom image
     eyetracker_on=False)

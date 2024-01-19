@@ -1,0 +1,85 @@
+eyetracker:
+    address: None
+    dot_size: 0.1
+    options:
+        active_eye: left
+        automatic_calibration_pacing: 1000
+        autothreshold_click: true
+        autothreshold_repeat: true
+        binocular_enabled: false
+        calibration_type: HV5
+        enable_automatic_calibration: true
+        enable_camera_position_detect: true
+        enable_search_limits: true
+        file_event_filter: LEFT,RIGHT,FIXATION,SACCADE,BLINK,MESSAGE,BUTTON,INPUT
+        heuristic_filter: 2
+        link_event_filter: LEFT,RIGHT,FIXATION,SACCADE,BLINK,BUTTON
+        link_sample_data: LEFT,RIGHT,GAZE,GAZERES,AREA,STATUS,HTARGET
+        pupil_size_diameter: true
+        sample_rate: 1000
+        track_search_limits: true
+        x_gaze_constraint: AUTO
+        y_gaze_constraint: AUTO
+language_localizer:
+    mri:
+        sync: t
+    responses:
+        attention_check: space
+        escape: escape
+    stimuli:
+        fix_color:
+        - -1
+        - -1
+        - -1
+        phase_duration_attention: 400
+        phase_duration_blank: 100
+        phase_duration_fix: 1400
+        phase_duration_word: 450
+        phase_name_attention: ll_attention
+        phase_name_blank: ll_blank
+        phase_name_fix: ll_fix
+        phase_name_word: ll_word
+        text_color:
+        - -1
+        - -1
+        - -1
+        win_color:
+        - 1
+        - 1
+        - 1
+    text:
+        awaiting_scanner: Waiting for scanner ...
+        instructions: This is the instruction text
+monitor:
+    distance: 70
+    gamma: 1
+    name: my-screen
+    width: 30.41
+mouse:
+    visible: false
+mri:
+    TA: 2.0
+    TR: 2.0
+    simulate: true
+    skip: 0
+    sound: false
+    sync: t
+    volumes: 10
+preferences:
+    general:
+        audioLib: sounddevice
+        units: deg
+window:
+    color:
+    - 1
+    - 1
+    - 1
+    fullscr: false
+    pos:
+    - 0
+    - 0
+    size:
+    - 900
+    - 500
+    waitBlanking: true
+    winType: pyglet
