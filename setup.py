@@ -8,7 +8,7 @@ setup(
     author_email='luke-korthals@outlook.de',
     packages=['language_localizer'],
     install_requires=[
-        'exptools2 @ git+ssh://github.com/VU-Cog-Sci/exptools2/',
+        'exptools2 @ git+https://github.com/VU-Cog-Sci/exptools2/',
         'psychopy-mri-emulator'
         ],
     package_data={
