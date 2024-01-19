@@ -8,6 +8,10 @@ setup(
     author_email='luke-korthals@outlook.de',
     packages=['language_localizer'],
     install_requires=[
+        'conda install numpy scipy matplotlib pandas pyopengl pillow lxml openpyxl configobj pyyaml gevent greenlet msgpack-python psutil pytables cffi seaborn cython pyzmq pyserial qt pyqt',
+        'conda install -c conda-forge pyglet pysoundfile python-bidi moviepy pyosf',
+        'pip install zmq json-tricks pyparallel sounddevice pygame pysoundcard psychopy_ext psychopy psychopy-sounddevice psychopy-mri-emulator',
+        'pip install git+https://github.com/VU-Cog-Sci/exptools2/',
         'exptools2 @ git+ssh://github.com/VU-Cog-Sci/exptools2/'
         ],
     package_data={
