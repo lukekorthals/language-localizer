@@ -3,6 +3,8 @@
 from datetime import datetime
 from exptools2.core.eyetracker import PylinkEyetrackerSession
 from functools import reduce
+import pkg_resources
+
 from language_localizer.language_localizer_trials import LanguageLocalizerFixationTrial, LanguageLocalizerAttentionTrial, LanguageLocalizerSentenceTrial
 from language_localizer.language_localizer_stimuli import LanguageLocalizerSentenceStimSet, LanguageLocalizerAttentionCheckStim
 
@@ -14,7 +16,7 @@ class LanguageLocalizerEyeTrackerSession(PylinkEyetrackerSession):
                  subj_nr: int,
                  run_nr: int,
                  set_nr: int,
-                 settings_file: str,
+                 settings_file: str = pkg_resources.resource_filename(__name__, f"pkg_resources/settings/settings.yml"),
                  output_dir: str="logs",
                  sentence_stim_set = LanguageLocalizerSentenceStimSet(),
                  attention_check_stim = LanguageLocalizerAttentionCheckStim(),

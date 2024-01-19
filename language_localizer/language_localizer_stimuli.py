@@ -21,7 +21,7 @@ class LanguageLocalizerSentenceStimSet():
             Instead of using one of the standard stimulus sets the complete path can be provided. 
         """
         if self.complete_path is None: 
-            stim_set_path = pkg_resources.resource_filename(__name__, f"stimuli/langloc_fmri_run{run_nr}_stim_set{set_nr}.csv")
+            stim_set_path = pkg_resources.resource_filename(__name__, f"pkg_resources/stimuli/langloc_fmri_run{run_nr}_stim_set{set_nr}.csv")
             using = f"Using stimulus set: langloc_fmri_run{run_nr}_stim_set{set_nr}.csv"
         else:
             stim_set_path = self.complete_path
@@ -46,7 +46,7 @@ class LanguageLocalizerAttentionCheckStim():
 
     def load(self):
         if self.complete_path is None: 
-            img_path = pkg_resources.resource_filename(__name__, f"stimuli/hand-press-button-4.jpeg")
+            img_path = pkg_resources.resource_filename(__name__, f"pkg_resources/stimuli/hand-press-button-4.jpeg")
         else:
             img_path = self.complete_path
         return img_path

@@ -12,7 +12,8 @@ setup(
         'psychopy-mri-emulator'
         ],
     package_data={
-        "language_localizer": ["stimuli/*"]
+        "language_localizer": ["pkg_resources/stimuli/*",
+                               "pkg_resources/settings/*"]
 
     },
     version='0.1',
