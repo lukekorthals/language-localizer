@@ -8,9 +8,6 @@ setup(
     author_email='luke-korthals@outlook.de',
     packages=['language_localizer'],
     install_requires=[
-        'pip install numpy scipy matplotlib pandas pyopengl pillow lxml openpyxl configobj pyyaml gevent greenlet msgpack-python psutil pytables cffi seaborn cython pyzmq pyserial qt pyqt',
-        'pip install pyglet pysoundfile python-bidi moviepy pyosf',
-        'pip install zmq json-tricks pyparallel sounddevice pygame pysoundcard psychopy_ext psychopy psychopy-sounddevice psychopy-mri-emulator',
         'exptools2 @ git+ssh://github.com/VU-Cog-Sci/exptools2/'
         ],
     package_data={
