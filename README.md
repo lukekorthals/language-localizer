@@ -2,8 +2,15 @@
 Python replication of language localizer originally written in Matlab by Fedorenko et al. (2010) to be used with [psychopy](https://psychopy.org/) (Peirce et al., 2019) and [exptools2](https://github.com/VU-Cog-Sci/exptools2).
 
 # Installation
+On macOS you need to install `wxPython` and `gevent` seperately. The remaining requirements will be installed when you install the language-localizer package.
+
+On Windows, simply using `pip install git+https://github.com/lukekorthals/language-localizer` may work. 
 
 ```
+conda create -n language-localizer python=3.9
+conda activate language-localizer
+conda install conda-forge::wxpython
+conda install gevent
 pip install git+https://github.com/lukekorthals/language-localizer
 ```
 
