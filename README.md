@@ -3,6 +3,7 @@ Python replication of language localizer originally written in Matlab by Fedoren
 
 # Installation
 First make sure you have [anaconda](https://www.anaconda.com/download) and [git](https://git-scm.com/download/win) installed and set up on your machine. 
+
 On macOS you need to install `wxPython` and `gevent` seperately. The remaining requirements will be installed when you install the language-localizer package.
 
 On Windows, simply using `pip install git+https://github.com/lukekorthals/language-localizer` may work but I still recommend running the following commands in full.
