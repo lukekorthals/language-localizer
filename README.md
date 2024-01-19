@@ -4,7 +4,7 @@ Python replication of language localizer originally written in Matlab by Fedoren
 # Installation
 On macOS you need to install `wxPython` and `gevent` seperately. The remaining requirements will be installed when you install the language-localizer package.
 
-On Windows, simply using `pip install git+https://github.com/lukekorthals/language-localizer` may work but I still recommend simply running the following commands in full.
+On Windows, simply using `pip install git+https://github.com/lukekorthals/language-localizer` may work but I still recommend running the following commands in full.
 
 ```
 conda create -n language-localizer python=3.9
