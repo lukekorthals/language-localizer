@@ -5,54 +5,7 @@ from psychopy.visual import ImageStim, TextStim
 from typing import Collection
 
 
-class LanguageLocalizerTrial(Trial):
-
-    def __init__(self,
-                 session: Session,
-                 trial_nr: int,
-                 phase_durations: Collection[int],
-                 phase_names: Collection[str] = None,
-                 parameters: dict = None,
-                 timing: str = 'milliseconds',
-                 load_next_during_phase: int = None,
-                 verbose: bool = True,
-                 draw_each_frame: bool = True):
-        """Initialize the ImageTrial object.
-
-        parameters
-        ----------
-        session : LanguageLocalizerEyeTrackerSession
-            A Session object (needed for metadata), should specifically be a LanguageLocalizerEyeTrackerSession object.
-        timing : str
-            The "units" of the phase durations. Default is 'milliseconds' 
-            which is not supported by exptools2 but was used in the original 
-            language localizer in matlab. Milliseconds are then converted to 
-            frames as this yields more accurate timing than using exptools2's 
-            seconds. Alternatively 'seconds' or 'frames' may be used according to 
-            exptools2's documentation.
-        other parameters:
-            refer to exptools2.core.Trial
-        """
-
-        # Convert phase_durations to frames according to actual framerate
-        if timing == "milliseconds":
-            actual_framerate = session.actual_framerate
-            phase_durations = [int(duration/1000 * actual_framerate)
-                               for duration in phase_durations]
-            timing = "frames"  # set timing to frames for super().__init__
-
-        super().__init__(session=session,
-                         trial_nr=trial_nr,
-                         phase_durations=phase_durations,
-                         phase_names=phase_names,
-                         parameters=parameters,
-                         timing=timing,
-                         load_next_during_phase=load_next_during_phase,
-                         verbose=verbose,
-                         draw_each_frame=draw_each_frame)
-
-
-class LanguageLocalizerAttentionTrial(LanguageLocalizerTrial):
+class LanguageLocalizerAttentionTrial(Trial):
     """Trial to display the hand press icon as attention check."""
 
     def __init__(self,
@@ -84,11 +37,11 @@ class LanguageLocalizerAttentionTrial(LanguageLocalizerTrial):
         phase_duration_blank = session.settings["language_localizer"]["stimuli"]["phase_duration_blank"]
         phase_name_attention = session.settings["language_localizer"]["stimuli"]["phase_name_attention"]
         phase_name_blank = session.settings["language_localizer"]["stimuli"]["phase_name_blank"]
+        timing = session.settings["language_localizer"]["stimuli"]["timing_attention_trial"]
         
         # Set phase durations and names
         phase_durations = (phase_duration_attention, phase_duration_blank)
         phase_names = (phase_name_attention, phase_name_blank)
-        timing = "milliseconds"
 
         super().__init__(session=session,
                          trial_nr=trial_nr,
@@ -112,7 +65,7 @@ class LanguageLocalizerAttentionTrial(LanguageLocalizerTrial):
             self.session.win.flip()
 
 
-class LanguageLocalizerSentenceTrial(LanguageLocalizerTrial):
+class LanguageLocalizerSentenceTrial(Trial):
     """"""
 
     def __init__(self,
@@ -134,11 +87,11 @@ class LanguageLocalizerSentenceTrial(LanguageLocalizerTrial):
         phase_duration_blank = session.settings["language_localizer"]["stimuli"]["phase_duration_blank"]
         phase_name_word = session.settings["language_localizer"]["stimuli"]["phase_name_word"]
         phase_name_blank = session.settings["language_localizer"]["stimuli"]["phase_name_blank"]
-        
+        timing = session.settings["language_localizer"]["stimuli"]["timing_sentence_trial"]
+
         # Determine phase durations and names according to number of words
         phase_durations = [phase_duration_blank]+[phase_duration_word for i in range(len(words))]
         phase_names = [phase_name_blank]+[f"{phase_name_word}_{i}" for i in range(len(words))]
-        timing = "milliseconds"
 
         # Set log parameters
         parameters = {
@@ -169,16 +122,13 @@ class LanguageLocalizerSentenceTrial(LanguageLocalizerTrial):
             self.txt_stims[self.phase-1].draw()
 
 
-class LanguageLocalizerFixationTrial(LanguageLocalizerTrial):
+class LanguageLocalizerFixationTrial(Trial):
     """Trial to display the fixation cross."""
 
     def __init__(self,
                  session: Session,
                  trial_nr: int,
-                 phase_durations: Collection[int] = (1400,),
-                 phase_names: Collection[str] = ("ll_fix",),
                  parameters: dict = None,
-                 timing: str = 'milliseconds',
                  load_next_during_phase: int = None,
                  verbose: bool = True,
                  draw_each_frame: bool = True):
@@ -191,11 +141,11 @@ class LanguageLocalizerFixationTrial(LanguageLocalizerTrial):
         # Load phase settings from settings.yml
         phase_duration_fix= session.settings["language_localizer"]["stimuli"]["phase_duration_fix"]
         phase_name_fix = session.settings["language_localizer"]["stimuli"]["phase_name_fix"]
-        
+        timing = session.settings["language_localizer"]["stimuli"]["timing_fixation_trial"]
+
         # Determine phase durations and names according to number of words
         phase_durations = (phase_duration_fix, )
         phase_names = (phase_name_fix, )
-        timing = "milliseconds"
 
         super().__init__(session=session,
                          trial_nr=trial_nr,

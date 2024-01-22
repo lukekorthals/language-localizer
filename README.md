@@ -62,6 +62,9 @@ language_localizer:
     phase_duration_word: 450
     phase_duration_attention: 400
     phase_duration_fix: 1400
+    timing_attention_trial: seconds
+    timing_sentence_trial: seconds
+    timing_fixation_trial: seconds
     text_color: [-1, -1, -1]
     fix_color: [-1, -1, -1]
     win_color: [1, 1, 1]
@@ -104,6 +107,9 @@ stimuli:
     phase_duration_word: 450
     phase_duration_attention: 400
     phase_duration_fix: 1400
+    timing_attention_trial: seconds
+    timing_sentence_trial: seconds
+    timing_fixation_trial: seconds
     text_color: [-1, -1, -1]
     fix_color: [-1, -1, -1]
     win_color: [1, 1, 1]

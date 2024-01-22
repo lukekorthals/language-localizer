@@ -68,10 +68,13 @@ language_localizer:
     phase_name_word: ll_word
     phase_name_attention: ll_attention
     phase_name_fix: ll_fix
-    phase_duration_blank: 100
-    phase_duration_word: 450
-    phase_duration_attention: 400
-    phase_duration_fix: 1400
+    phase_duration_blank: 0.1
+    phase_duration_word: 0.45
+    phase_duration_attention: 0.4
+    phase_duration_fix: 1.4
+    timing_attention_trial: seconds
+    timing_sentence_trial: seconds
+    timing_fixation_trial: seconds
     text_color: [-1, -1, -1]
     fix_color: [-1, -1, -1]
     win_color: [1, 1, 1]
