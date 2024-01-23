@@ -146,7 +146,6 @@ class LanguageLocalizerEyeTrackerSession(PylinkEyetrackerSession):
                 self.calibrate_eyetracker()
 
         # Instructions
-        # TODO: add instructions
         self.display_text(
             f"""In this task, you will read sentences or sequences of word-like nonwords (like “blicket” or “florp”). 
             \nThe materials will be shown one word/nonword at a time.
