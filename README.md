@@ -2,11 +2,19 @@
 Python replication of language localizer originally written in Matlab by Fedorenko et al. (2010) to be used with [psychopy](https://psychopy.org/) (Peirce et al., 2019) and [exptools2](https://github.com/VU-Cog-Sci/exptools2).
 
 # Installation
+## With exptools2 installed
+If you have exptools2 and all its dependencies installed you only need to install the language-localizer package.
+
+```
+pip install git+https://github.com/lukekorthals/language-localizer
+```
+
+## Without exptools2 installed
 First make sure you have [anaconda](https://www.anaconda.com/download) and [git](https://git-scm.com/download/win) installed and set up on your machine. 
 
 On macOS you need to install `wxPython` and `gevent` seperately. The remaining requirements will be installed when you install the language-localizer package.
 
-On Windows, simply using `pip install git+https://github.com/lukekorthals/language-localizer` may work but I still recommend running the following commands in full.
+On Windows, simply using `pip install git+https://github.com/lukekorthals/language-localizer` may work but I still recommend running all of the following commands.
 
 ```
 conda create -n language-localizer python=3.9
@@ -17,10 +25,20 @@ pip install git+https://github.com/lukekorthals/language-localizer
 ```
 
 # Quickstart
-To run a simple example using standard settings you can use the following code. 
+Make sure the language-localizer conda environment is selected as your Python interpreter.
+Then execute the following code to run the language localizer with standard settings. 
+
+```python
+from language_localizer.language_localizer_session import LanguageLocalizerEyeTrackerSession
+
+session = LanguageLocalizerEyeTrackerSession(subj_nr=1, run_nr=1, set_nr=1)
+session.run()
+```
+
+Note that the experiment runs in a small window to make debugging easier. 
 
 You can use the following keys. 
-- Press `space` to start when "This is the instruction text" is displayed. 
+- Press `space` to move through the instructions. 
 - Press `t` to simulate the mri sync when "Waiting for scanner ..." is displayed. 
 - Press `space` whenever the attention check image is being displayed
 - Press `escape` to gracefully exit the session early.
@@ -28,22 +46,7 @@ You can use the following keys.
 
 The session will run according to the settings in the default [settings.yaml](https://github.com/lukekorthals/language-localizer/blob/main/language_localizer/pkg_resources/settings/settings.yml) file which is only intended to serve as an example. 
 
-Refer to [Settings](Settings) when implementing the language localizer as part of an actual experiment. 
-
-```python
-from language_localizer.language_localizer_session import LanguageLocalizerEyeTrackerSession
-
-# Create a session object
-session = LanguageLocalizerEyeTrackerSession(
-  subj_nr=1, 
-  run_nr=1, 
-  set_nr=1
-  )
-
-# Run the session
-session.run()
-```
-
+Refer to the next section when implementing the language localizer as part of an actual experiment. 
 
 # Settings
 To implement the language localizer as part of an actual experiment, you should create your own settings.yml following the instructions from [exptools2](https://github.com/VU-Cog-Sci/exptools2) and make sure to add the following settings.
