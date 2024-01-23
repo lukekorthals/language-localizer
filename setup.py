@@ -19,6 +19,6 @@ setup(
     },
     version='0.1',
     license='MIT',
-    description='A python implementation of the language localizer developed by Fedorenko et al. (2010)',
+    description='A python implementation of the language localizer originally developed in MATLAB by Fedorenko et al. (2010)',
     long_description=open('README.md').read(),
 )
