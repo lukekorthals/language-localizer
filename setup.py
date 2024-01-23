@@ -9,7 +9,8 @@ setup(
     packages=['language_localizer'],
     install_requires=[
         'exptools2 @ git+https://github.com/VU-Cog-Sci/exptools2/',
-        'psychopy-mri-emulator'
+        'psychopy-mri-emulator',
+        'psychopy-sounddevice'
         ],
     package_data={
         "language_localizer": ["pkg_resources/stimuli/*",
