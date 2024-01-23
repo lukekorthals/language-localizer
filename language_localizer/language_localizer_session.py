@@ -48,9 +48,8 @@ class LanguageLocalizerEyeTrackerSession(PylinkEyetrackerSession):
         except Exception as e:
             print(f"Couldnt initialize session due to error in super().__init__: {e}")
         
-        # Validate and apply settings
+        # Validate settings
         self.validate_settings()
-        self.win.color = self.settings["language_localizer"]["stimuli"]["win_color"]
 
         # Load stimuli and create trials
         self.sentences = sentence_stim_set.load(run_nr, set_nr)
@@ -96,11 +95,20 @@ class LanguageLocalizerEyeTrackerSession(PylinkEyetrackerSession):
         required_keys = [
             'language_localizer.responses.attention_check',
             'language_localizer.responses.escape',
+            'language_localizer.stimuli.phase_name_blank',
+            'language_localizer.stimuli.phase_name_word',
+            'language_localizer.stimuli.phase_name_attention',
+            'language_localizer.stimuli.phase_name_fix',
+            'language_localizer.stimuli.phase_duration_blank',
+            'language_localizer.stimuli.phase_duration_word',
+            'language_localizer.stimuli.phase_duration_attention',
+            'language_localizer.stimuli.phase_duration_fix',
+            'language_localizer.stimuli.timing_attention_trial',
+            'language_localizer.stimuli.timing_sentence_trial',
+            'language_localizer.stimuli.timing_fixation_trial',
             'language_localizer.stimuli.text_color',
             'language_localizer.stimuli.fix_color',
-            'language_localizer.mri.sync',
-            'language_localizer.text.instructions',
-            'language_localizer.text.awaiting_scanner'
+            'mri.sync',
         ]
 
         for i, key in enumerate(required_keys):
@@ -112,11 +120,20 @@ class LanguageLocalizerEyeTrackerSession(PylinkEyetrackerSession):
                       \nRemember to set values for the following keys:
                         \n- 'language_localizer.responses.attention_check',
                         \n- 'language_localizer.responses.escape',
+                        \n- 'language_localizer.stimuli.phase_name_blank',
+                        \n- 'language_localizer.stimuli.phase_name_word',
+                        \n- 'language_localizer.stimuli.phase_name_attention',
+                        \n- 'language_localizer.stimuli.phase_name_fix',
+                        \n- 'language_localizer.stimuli.phase_duration_blank',
+                        \n- 'language_localizer.stimuli.phase_duration_word',
+                        \n- 'language_localizer.stimuli.phase_duration_attention',
+                        \n- 'language_localizer.stimuli.phase_duration_fix',
+                        \n- 'language_localizer.stimuli.timing_attention_trial',
+                        \n- 'language_localizer.stimuli.timing_sentence_trial',
+                        \n- 'language_localizer.stimuli.timing_fixation_trial',
                         \n- 'language_localizer.stimuli.text_color',
                         \n- 'language_localizer.stimuli.fix_color',
-                        \n- 'language_localizer.mri.sync',
-                        \n- 'language_localizer.text.instructions',
-                        \n- 'language_localizer.text.awaiting_scanner'
+                        \n- 'mri.sync'
                       """)
 
     def run(self):
@@ -131,7 +148,32 @@ class LanguageLocalizerEyeTrackerSession(PylinkEyetrackerSession):
         # Instructions
         # TODO: add instructions
         self.display_text(
-            self.settings["language_localizer"]["text"]["instructions"],
+            f"""In this task, you will read sentences or sequences of word-like nonwords (like “blicket” or “florp”). 
+            \nThe materials will be shown one word/nonword at a time.
+            \nYour task is to read the materials attentively as they appear. 
+            \n\n(Press {self.settings["language_localizer"]["responses"]["attention_check"]} to continue)""",
+            keys=self.settings["language_localizer"]["responses"]["attention_check"], 
+            color=self.settings["language_localizer"]["stimuli"]["text_color"])  
+        
+        self.display_text(
+            f"""Please read silently to yourself, as you would when reading a book. 
+            \nDon’t be stressed if the words/nonwords seem to be appearing too quickly at first – 
+            you will get used to the presentation speed after a few trials. 
+            \n\n(Press {self.settings["language_localizer"]["responses"]["attention_check"]} to continue)""",
+            keys=self.settings["language_localizer"]["responses"]["attention_check"], 
+            color=self.settings["language_localizer"]["stimuli"]["text_color"])  
+        
+        self.display_text(
+            f"""At the end of each sentence / nonword sequence, you'll see a picture of a finger pressing a button; 
+            \nwhenever you see that picture, please press {self.settings["language_localizer"]["responses"]["attention_check"]}. 
+            \n\n(Press {self.settings["language_localizer"]["responses"]["attention_check"]} to continue)""",
+            keys=self.settings["language_localizer"]["responses"]["attention_check"], 
+            color=self.settings["language_localizer"]["stimuli"]["text_color"])  
+        
+        self.display_text(
+            f"""This task is included to help you stay alert throughout the task. 
+            \nYour main task is to read attentively.
+            \n\n(Press {self.settings["language_localizer"]["responses"]["attention_check"]} to start the experiment)""",
             keys=self.settings["language_localizer"]["responses"]["attention_check"], 
             color=self.settings["language_localizer"]["stimuli"]["text_color"])  
 
@@ -141,8 +183,8 @@ class LanguageLocalizerEyeTrackerSession(PylinkEyetrackerSession):
 
         # Wait for fMRI trigger
         self.display_text(
-            self.settings["language_localizer"]["text"]["awaiting_scanner"],
-            keys=self.settings["language_localizer"]["mri"]["sync"],
+            "Waiting for scanner ...",
+            keys=self.settings["mri"]["sync"],
             color=self.settings["language_localizer"]["stimuli"]["text_color"]
             )
 

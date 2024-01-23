@@ -9,7 +9,7 @@ preferences:
 window:
   size: [900, 500]
   pos: [0, 0]
-  color: [1, 1, 1] 
+  color: [1, 1, -1] 
   fullscr: False 
   winType: pyglet
   waitBlanking: True
@@ -77,9 +77,3 @@ language_localizer:
     timing_fixation_trial: seconds
     text_color: [-1, -1, -1]
     fix_color: [-1, -1, -1]
-    win_color: [1, 1, 1]
-  mri:
-    sync: t
-  text:
-    instructions: This is the instruction text
-    awaiting_scanner: Waiting for scanner ...

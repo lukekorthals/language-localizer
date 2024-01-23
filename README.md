@@ -58,21 +58,15 @@ language_localizer:
     phase_name_word: ll_word
     phase_name_attention: ll_attention
     phase_name_fix: ll_fix
-    phase_duration_blank: 100
-    phase_duration_word: 450
-    phase_duration_attention: 400
-    phase_duration_fix: 1400
+    phase_duration_blank: 0.1
+    phase_duration_word: 0.45
+    phase_duration_attention: 0.4
+    phase_duration_fix: 1.4
     timing_attention_trial: seconds
     timing_sentence_trial: seconds
     timing_fixation_trial: seconds
     text_color: [-1, -1, -1]
     fix_color: [-1, -1, -1]
-    win_color: [1, 1, 1]
-  mri:
-    sync: t
-  text:
-    instructions: This is the instruction text
-    awaiting_scanner: Waiting for scanner ...
 ```
 
 In the following the individual setting sections are explained in detail. 
@@ -91,10 +85,10 @@ responses:
 ## Stimuli
 All settings related to stimuli. 
 - `phase_name_...`: phase names included in the log file
-- `phase_duration_...`: phase durations defined in milliseconds to determine how long each stimulus is presented
+- `phase_duration_...`: phase durations defined in the respective timing (frames or seconds) to determine how long each stimulus is presented
+- `timing_...`: units of the phase durations (frames or seconds)
 - `text_color`: color of the (non-)words
 - `fix_color`: color of fixation cross
-- `win_color`: background color of the screen
 
 
 ```yaml
@@ -103,16 +97,15 @@ stimuli:
     phase_name_word: ll_word
     phase_name_attention: ll_attention
     phase_name_fix: ll_fix
-    phase_duration_blank: 100
-    phase_duration_word: 450
-    phase_duration_attention: 400
-    phase_duration_fix: 1400
+    phase_duration_blank: 0.1
+    phase_duration_word: 0.45
+    phase_duration_attention: 0.4
+    phase_duration_fix: 1.4
     timing_attention_trial: seconds
     timing_sentence_trial: seconds
     timing_fixation_trial: seconds
     text_color: [-1, -1, -1]
     fix_color: [-1, -1, -1]
-    win_color: [1, 1, 1]
 ```
 
 ## MRI
@@ -122,17 +115,6 @@ Settings concerning the mri scanner.
 ```yaml
 mri:
     sync: t
-```
-
-**Text**
-All non stimuli texts used in the experiment.
-- `instructions`: displayed at the begining of the experiment
-- `awaiting_scanner`: displayed when waiting for a scanner signal
-
-```yaml
-text:
-    instructions: This is the instruction text
-    awaiting_scanner: Waiting for scanner ...
 ```
 
 # Documentation
