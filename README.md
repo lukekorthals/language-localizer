@@ -3,22 +3,33 @@ Python replication of language localizer originally written in Matlab by Fedoren
 
 # Installation
 ## With exptools2 installed
-If you have exptools2 and all its dependencies installed you only need to install the language-localizer package.
+If you have expt00ls2 and its requirements installed in a conda environment already, you just need to install the language-localizer on top.
 
 ```
+conda activate YOUR_ENVIRONMENT
 pip install git+https://github.com/lukekorthals/language-localizer
 ```
-
 ## Without exptools2 installed
 First make sure you have [anaconda](https://www.anaconda.com/download) and [git](https://git-scm.com/download/win) installed and set up on your machine. 
 
-On macOS you need to install `wxPython` and `gevent` seperately. The remaining requirements will be installed when you install the language-localizer package.
+First create and activate a new conda environment.
+  ```
+  conda create -n language-localizer python=3.9
+  conda activate language-localizer
+  ```
 
-On Windows, simply using `pip install git+https://github.com/lukekorthals/language-localizer` may work but I still recommend running all of the following commands.
+**On Windows**
+
+Then, if you are running Windows, you just need to install the language-localizer package which will automatically install exptools2 and its requirements. 
+  ```
+  pip install git+https://github.com/lukekorthals/language-localizer
+  ```
+
+**On macOS**
+
+Otherwise, when runing macOS some required packages have to be installed individually before installing exptools2 and the language-localizer.
 
 ```
-conda create -n language-localizer python=3.9
-conda activate language-localizer
 conda install conda-forge::wxpython
 conda install gevent
 pip install git+https://github.com/lukekorthals/language-localizer
